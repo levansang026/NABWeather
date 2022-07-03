@@ -12,28 +12,32 @@ import RxSwift
 class FastForecastRepositoryImpl {
     
     private static func buildIconLink(iconId: String) -> String {
-        return "https://openweathermap.org/img/wn/\(iconId)@3x.png"
+        return "https://openweathermap.org/img/wn/\(iconId)@2x.png"
     }
     
     private let dataTransferService: AnyDataTransferService<DailyForecast>
     private let apiKey: String
+    private let cache: Cache<String, CityForecast>
     
     init(
         apiKey: String,
-        dataTransferService: AnyDataTransferService<DailyForecast>
+        dataTransferService: AnyDataTransferService<DailyForecast>,
+        cache: Cache<String, CityForecast>
     ) {
         self.apiKey = apiKey
         self.dataTransferService = dataTransferService
+        self.cache = cache
     }
 }
 
 extension FastForecastRepositoryImpl: ForecastRepository {
     
     func savedForecast(for query: CityForecastQuery) -> Single<CityForecast?> {
-        return .just(nil)
+        return .just(cache.value(forKey: query.name))
     }
     
     func saveForecastResult(of query: CityForecastQuery, with forecast: CityForecast) -> Completable {
+        cache.insert(forecast, forKey: query.name)
         return .empty()
     }
     
