@@ -14,6 +14,19 @@
 		9DAB53C228706BF2009A53B4 /* NABWeather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB53C028706BF2009A53B4 /* NABWeather.xcdatamodeld */; };
 		9DAB53C428706BF3009A53B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DAB53C328706BF3009A53B4 /* Assets.xcassets */; };
 		9DAB53C728706BF3009A53B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DAB53C528706BF3009A53B4 /* LaunchScreen.storyboard */; };
+		9DAB53D828718E4B009A53B4 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB53D728718E4B009A53B4 /* NetworkConfig.swift */; };
+		9DAB53DC287190DC009A53B4 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 9DAB53DB287190DC009A53B4 /* Moya */; };
+		9DAB53DE2871911D009A53B4 /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB53DD2871911D009A53B4 /* DataTransferService.swift */; };
+		9DAB53E228719228009A53B4 /* NABWeatherDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 9DAB53E128719228009A53B4 /* NABWeatherDomain */; };
+		9DAB53E4287192AB009A53B4 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB53E3287192AB009A53B4 /* Requestable.swift */; };
+		9DAB53E628719301009A53B4 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB53E528719301009A53B4 /* NetworkProvider.swift */; };
+		9DAB53E8287194BA009A53B4 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB53E7287194BA009A53B4 /* Endpoint.swift */; };
+		9DAB53EA28719535009A53B4 /* DataTransferService+TypeErasure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB53E928719535009A53B4 /* DataTransferService+TypeErasure.swift */; };
+		9DAB53ED28719A0F009A53B4 /* DailyForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB53EC28719A0F009A53B4 /* DailyForecast.swift */; };
+		9DAB53EF28719FE0009A53B4 /* TargetType+Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB53EE28719FE0009A53B4 /* TargetType+Weather.swift */; };
+		9DAB53F12871DC01009A53B4 /* ForecastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB53F02871DC01009A53B4 /* ForecastResponse.swift */; };
+		9DAB53F32871E3FB009A53B4 /* ForecastRepositoryImpl+MemCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB53F22871E3FB009A53B4 /* ForecastRepositoryImpl+MemCache.swift */; };
+		9DAB53F52871E43D009A53B4 /* ForecastRepositoryImpl+Coredata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB53F42871E43D009A53B4 /* ForecastRepositoryImpl+Coredata.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +39,18 @@
 		9DAB53C328706BF3009A53B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9DAB53C628706BF3009A53B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9DAB53C828706BF3009A53B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DAB53D32871623A009A53B4 /* NABWeatherDomain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = NABWeatherDomain; path = NABWeather/NABWeatherDomain; sourceTree = "<group>"; };
+		9DAB53D728718E4B009A53B4 /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
+		9DAB53DD2871911D009A53B4 /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
+		9DAB53E3287192AB009A53B4 /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
+		9DAB53E528719301009A53B4 /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
+		9DAB53E7287194BA009A53B4 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		9DAB53E928719535009A53B4 /* DataTransferService+TypeErasure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataTransferService+TypeErasure.swift"; sourceTree = "<group>"; };
+		9DAB53EC28719A0F009A53B4 /* DailyForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecast.swift; sourceTree = "<group>"; };
+		9DAB53EE28719FE0009A53B4 /* TargetType+Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TargetType+Weather.swift"; sourceTree = "<group>"; };
+		9DAB53F02871DC01009A53B4 /* ForecastResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastResponse.swift; sourceTree = "<group>"; };
+		9DAB53F22871E3FB009A53B4 /* ForecastRepositoryImpl+MemCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForecastRepositoryImpl+MemCache.swift"; sourceTree = "<group>"; };
+		9DAB53F42871E43D009A53B4 /* ForecastRepositoryImpl+Coredata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForecastRepositoryImpl+Coredata.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DAB53DC287190DC009A53B4 /* Moya in Frameworks */,
+				9DAB53E228719228009A53B4 /* NABWeatherDomain in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,8 +69,10 @@
 		9DAB53AB28706BF2009A53B4 = {
 			isa = PBXGroup;
 			children = (
+				9DAB53D22871623A009A53B4 /* Packages */,
 				9DAB53B628706BF2009A53B4 /* NABWeather */,
 				9DAB53B528706BF2009A53B4 /* Products */,
+				9DAB53E028719228009A53B4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,8 +87,6 @@
 		9DAB53B628706BF2009A53B4 /* NABWeather */ = {
 			isa = PBXGroup;
 			children = (
-				9DAB53CF28707235009A53B4 /* Data */,
-				9DAB53CE28707227009A53B4 /* Presenter */,
 				9DAB53B728706BF2009A53B4 /* AppDelegate.swift */,
 				9DAB53B928706BF2009A53B4 /* SceneDelegate.swift */,
 				9DAB53BB28706BF2009A53B4 /* ViewController.swift */,
@@ -68,6 +95,8 @@
 				9DAB53C528706BF3009A53B4 /* LaunchScreen.storyboard */,
 				9DAB53C828706BF3009A53B4 /* Info.plist */,
 				9DAB53C028706BF2009A53B4 /* NABWeather.xcdatamodeld */,
+				9DAB53CF28707235009A53B4 /* Data */,
+				9DAB53CE28707227009A53B4 /* Presenter */,
 			);
 			path = NABWeather;
 			sourceTree = "<group>";
@@ -82,8 +111,66 @@
 		9DAB53CF28707235009A53B4 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				9DAB53D428716390009A53B4 /* Repositories */,
+				9DAB53D52871639F009A53B4 /* Network */,
+				9DAB53D6287163C5009A53B4 /* PersistentStorage */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		9DAB53D22871623A009A53B4 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				9DAB53D32871623A009A53B4 /* NABWeatherDomain */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		9DAB53D428716390009A53B4 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				9DAB53F22871E3FB009A53B4 /* ForecastRepositoryImpl+MemCache.swift */,
+				9DAB53F42871E43D009A53B4 /* ForecastRepositoryImpl+Coredata.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		9DAB53D52871639F009A53B4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				9DAB53EB287199FA009A53B4 /* DailyForecast */,
+				9DAB53D728718E4B009A53B4 /* NetworkConfig.swift */,
+				9DAB53DD2871911D009A53B4 /* DataTransferService.swift */,
+				9DAB53E928719535009A53B4 /* DataTransferService+TypeErasure.swift */,
+				9DAB53E3287192AB009A53B4 /* Requestable.swift */,
+				9DAB53E528719301009A53B4 /* NetworkProvider.swift */,
+				9DAB53E7287194BA009A53B4 /* Endpoint.swift */,
+				9DAB53EE28719FE0009A53B4 /* TargetType+Weather.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		9DAB53D6287163C5009A53B4 /* PersistentStorage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PersistentStorage;
+			sourceTree = "<group>";
+		};
+		9DAB53E028719228009A53B4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9DAB53EB287199FA009A53B4 /* DailyForecast */ = {
+			isa = PBXGroup;
+			children = (
+				9DAB53EC28719A0F009A53B4 /* DailyForecast.swift */,
+				9DAB53F02871DC01009A53B4 /* ForecastResponse.swift */,
+			);
+			path = DailyForecast;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,6 +189,10 @@
 			dependencies = (
 			);
 			name = NABWeather;
+			packageProductDependencies = (
+				9DAB53DB287190DC009A53B4 /* Moya */,
+				9DAB53E128719228009A53B4 /* NABWeatherDomain */,
+			);
 			productName = NABWeather;
 			productReference = 9DAB53B428706BF2009A53B4 /* NABWeather.app */;
 			productType = "com.apple.product-type.application";
@@ -130,6 +221,9 @@
 				Base,
 			);
 			mainGroup = 9DAB53AB28706BF2009A53B4;
+			packageReferences = (
+				9DAB53DA287190DC009A53B4 /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			productRefGroup = 9DAB53B528706BF2009A53B4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -157,10 +251,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DAB53DE2871911D009A53B4 /* DataTransferService.swift in Sources */,
+				9DAB53F52871E43D009A53B4 /* ForecastRepositoryImpl+Coredata.swift in Sources */,
+				9DAB53E8287194BA009A53B4 /* Endpoint.swift in Sources */,
+				9DAB53E4287192AB009A53B4 /* Requestable.swift in Sources */,
+				9DAB53F12871DC01009A53B4 /* ForecastResponse.swift in Sources */,
 				9DAB53C228706BF2009A53B4 /* NABWeather.xcdatamodeld in Sources */,
+				9DAB53ED28719A0F009A53B4 /* DailyForecast.swift in Sources */,
+				9DAB53D828718E4B009A53B4 /* NetworkConfig.swift in Sources */,
 				9DAB53BC28706BF2009A53B4 /* ViewController.swift in Sources */,
+				9DAB53EA28719535009A53B4 /* DataTransferService+TypeErasure.swift in Sources */,
+				9DAB53E628719301009A53B4 /* NetworkProvider.swift in Sources */,
+				9DAB53F32871E3FB009A53B4 /* ForecastRepositoryImpl+MemCache.swift in Sources */,
 				9DAB53B828706BF2009A53B4 /* AppDelegate.swift in Sources */,
 				9DAB53BA28706BF2009A53B4 /* SceneDelegate.swift in Sources */,
+				9DAB53EF28719FE0009A53B4 /* TargetType+Weather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +483,29 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9DAB53DA287190DC009A53B4 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9DAB53DB287190DC009A53B4 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9DAB53DA287190DC009A53B4 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		9DAB53E128719228009A53B4 /* NABWeatherDomain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NABWeatherDomain;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		9DAB53C028706BF2009A53B4 /* NABWeather.xcdatamodeld */ = {

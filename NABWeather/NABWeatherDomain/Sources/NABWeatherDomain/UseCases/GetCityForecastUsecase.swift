@@ -10,21 +10,21 @@ import RxSwift
 
 public protocol GetCityForecastUsecase {
     
-    func execute(with query: CityForecastQuery) -> Single<CityForecast?>
+    func execute(with query: CityForecastQuery) -> Single<CityForecast>
 }
 
 public struct DefaultGetCityForecastUsecase {
     
-    private let forecastRepository: ForeCastRepository
+    private let forecastRepository: ForecastRepository
     
-    public init(forecastRepository: ForeCastRepository) {
+    public init(forecastRepository: ForecastRepository) {
         self.forecastRepository = forecastRepository
     }
 }
 
 extension DefaultGetCityForecastUsecase: GetCityForecastUsecase {
     
-    public func execute(with query: CityForecastQuery) -> Single<CityForecast?> {
+    public func execute(with query: CityForecastQuery) -> Single<CityForecast> {
         let forecastRepository = self.forecastRepository
         return forecastRepository.savedForecast(for: query)
             .flatMap { cachedForecast in
@@ -34,10 +34,7 @@ extension DefaultGetCityForecastUsecase: GetCityForecastUsecase {
                 
                 return forecastRepository.fetchForecast(with: query)
                     .do(onSuccess: {
-                        guard let forecast = $0 else {
-                            return
-                        }
-                        _ = forecastRepository.saveForecastResult(of: query, with: forecast)
+                        _ = forecastRepository.saveForecastResult(of: query, with: $0)
                             .subscribe()
                     })
             }

@@ -14,7 +14,7 @@ public struct DailyForecast {
     public let sunset: Date
     
     public let temperature: Temperature
-    public let weather: Weather
+    public let weathers: [Weather]
     
     public let pressure: Int
     public let humidity: Int
@@ -24,7 +24,7 @@ public struct DailyForecast {
         sunrise: Date,
         sunset: Date,
         temperature: Temperature,
-        weather: Weather,
+        weathers: [Weather],
         pressure: Int,
         humidity: Int
     ) {
@@ -32,7 +32,7 @@ public struct DailyForecast {
         self.sunrise = sunrise
         self.sunset = sunset
         self.temperature = temperature
-        self.weather = weather
+        self.weathers = weathers
         self.pressure = pressure
         self.humidity = humidity
     }
