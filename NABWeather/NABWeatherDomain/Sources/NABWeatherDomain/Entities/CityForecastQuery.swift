@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+public struct CityForecastQuery {
+    
+    let name: String
+    let numberOfDay: Int
+    
+    public init(name: String, numberOfDay: Int = 7) {
+        self.name = name
+        self.numberOfDay = numberOfDay
+    }
+}
