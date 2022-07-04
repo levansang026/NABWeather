@@ -6,17 +6,44 @@
 //
 
 import UIKit
+import NABWeatherDomain
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var cache: Cache<String, CityForecast>?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        if let _ = UIApplication.shared.delegate as? AppDelegate {
+            let window = UIWindow(windowScene: windowScene)
+            self.window = window
+        }
+        
+        let viewController = ForecastViewController()
+        let navVC = UINavigationController()
+        navVC.viewControllers = [viewController]
+        
+        cache = .loadCache() ?? Cache()
+        let networkConfig = WeatherNetworkConfig()
+        let service = DefaultDataTransferService<DailyForecast>(config: networkConfig)
+        let forecastRepo = FastForecastRepositoryImpl(
+            apiKey: "4a98c3bdd88cacf1fff121f0cce98184",
+            dataTransferService: AnyDataTransferService(service),
+            cache: cache!
+        )
+        let viewModel = DefaultForecastViewModel(
+            getCityForecastUsecase: DefaultGetCityForecastUsecase(forecastRepository: forecastRepo),
+            forecastRepository: forecastRepo
+        )
+        viewController.viewModel = viewModel
+        
+        window?.rootViewController = navVC
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -47,6 +74,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
 
         // Save changes in the application's managed object context when the application transitions to the background.
+        do {
+            try cache?.saveToDisk()
+        } catch {
+            print("Cache - Error: \(error.localizedDescription)")
+        }
     }
 }
 

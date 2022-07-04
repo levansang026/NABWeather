@@ -10,7 +10,7 @@ import NABWeatherDomain
 
 struct ForecastResponse: Codable {
     
-    let code: String
+    let cod: String
     let city: ForecastCityResponse?
     let list: [DailyForecastResponse]?
 }

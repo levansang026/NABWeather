@@ -49,7 +49,7 @@ extension FastForecastRepositoryImpl: ForecastRepository {
             let cancelable = dataTransferService.requestThenDecode(with: endpoint) { result in
                 switch result {
                 case .success(let response):
-                    if response.code == "200" {
+                    if response.cod == "200" {
                         if let city = response.city, let list = response.list {
                             let dailyForecasts = list.map {
                                 NABWeatherDomain.DailyForecast(with: $0, iconUrlStrBuilder: Self.buildIconLink(iconId:))
@@ -60,7 +60,7 @@ extension FastForecastRepositoryImpl: ForecastRepository {
                             observer(.failure(ForecastError.somethingWentWrong))
                         }
                     } else {
-                        if response.code == "404" {
+                        if response.cod == "404" {
                             observer(.failure(ForecastError.cityNotFound))
                         } else {
                             observer(.failure(ForecastError.somethingWentWrong))

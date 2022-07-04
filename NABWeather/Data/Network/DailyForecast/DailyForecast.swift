@@ -47,9 +47,9 @@ extension CityForecastQuery {
     
     func asDict() -> [String: Any] {
         return [
-            "q": name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "",
+            "q": name,
             "cnt": "\(numberOfDay)",
-            "unit": "metric"
+            "units": "metric"
         ]
     }
 }
