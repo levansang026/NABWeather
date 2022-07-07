@@ -29,6 +29,10 @@ let package = Package(
         ),
         .testTarget(
             name: "NABWeatherDomainTests",
-            dependencies: ["NABWeatherDomain"]),
+            dependencies: [
+                "NABWeatherDomain",
+                .product(name: "RxBlocking", package: "RxSwift"),
+                .product(name: "RxTest", package: "RxSwift")
+            ]),
     ]
 )
