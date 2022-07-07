@@ -37,8 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             cache: cache!
         )
         let viewModel = DefaultForecastViewModel(
-            getCityForecastUsecase: DefaultGetCityForecastUsecase(forecastRepository: forecastRepo),
-            forecastRepository: forecastRepo
+            getCityForecastUsecase: DefaultGetCityForecastUsecase(forecastRepository: forecastRepo)
         )
         viewController.viewModel = viewModel
         

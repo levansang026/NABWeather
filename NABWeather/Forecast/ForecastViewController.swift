@@ -29,8 +29,10 @@ class ForecastViewController: UIViewController {
     }()
     
     // UI Components
-    private let searchController = UISearchController(searchResultsController: nil)
-    private let tableView = UITableView(frame: .zero, style: .plain)
+    let searchController = UISearchController(searchResultsController: nil)
+    let tableView = UITableView(frame: .zero, style: .plain)
+    let statusLabel = UILabel()
+    let rightBarButton = UIBarButtonItem()
     
     // MARK: - Methods
     override func viewDidLoad() {
@@ -41,6 +43,9 @@ class ForecastViewController: UIViewController {
     
     private func setUpViews() {
         
+        title = "Weather Forecast"
+        
+        // Navigation bar
         if #available(iOS 15.0, *) {
             let navigationBarAppearance = UINavigationBarAppearance()
             navigationBarAppearance.configureWithDefaultBackground()
@@ -51,33 +56,97 @@ class ForecastViewController: UIViewController {
             
             self.navigationController?.setNeedsStatusBarAppearanceUpdate()
         }
-        title = "Weather Forecast"
         
+        rightBarButton.title = "°F"//°C"
+        rightBarButton.rx.tap
+            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.viewModel.toggleUnitSetting()
+            })
+            .disposed(by: disposeBag)
+        navigationItem.rightBarButtonItem = rightBarButton
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search City"
+        searchController.hidesNavigationBarDuringPresentation = false
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
+        // Views
         view.backgroundColor = .systemBackground
         tableView.register(ForecastItemTableViewCell.self, forCellReuseIdentifier: Self.cellIdentifier)
         tableView.frame = view.bounds
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(tableView)
         
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search City"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
+        statusLabel.textColor = .secondaryLabel
+        statusLabel.numberOfLines = 3
+        statusLabel.translatesAutoresizingMaskIntoConstraints = false
+        statusLabel.textAlignment = .center
+        statusLabel.isHidden = true
+        view.addSubview(statusLabel)
+        
+        NSLayoutConstraint.activate([
+            statusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            statusLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            statusLabel.leadingAnchor.constraint(greaterThanOrEqualTo: view.layoutMarginsGuide.leadingAnchor),
+            statusLabel.trailingAnchor.constraint(greaterThanOrEqualTo: view.layoutMarginsGuide.trailingAnchor)
+        ])
     }
     
     private func bindViewModel() {
         
         viewModel.forecastsHotSeq
-            .distinctUntilChanged()
-            .asDriver(onErrorJustReturn: [])
-            .drive(onNext: { [weak self] items in
-                guard let self = self else { return }
-                var snapshot = NSDiffableDataSourceSnapshot<Int, ForecastItem>()
-                snapshot.appendSections([0])
-                snapshot.appendItems(items, toSection: 0)
-                self.datasource.apply(snapshot)
+            .distinctUntilChanged({ oldResult, newResult in
+                switch(oldResult, newResult) {
+                case (.success(let oldItems), .success(let newItems)):
+                    return oldItems == newItems
+                    
+                default: return false
+                }
             })
+            .asDriver(onErrorJustReturn: .success([]))
+            .drive(onNext: { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let items):
+                    self.tableView.isHidden = false
+                    self.statusLabel.isHidden = true
+                    var snapshot = NSDiffableDataSourceSnapshot<Int, ForecastItem>()
+                    snapshot.appendSections([0])
+                    snapshot.appendItems(items, toSection: 0)
+                    self.datasource.apply(snapshot, animatingDifferences: false)
+                    
+                case .failure(let error):
+                    self.tableView.isHidden = true
+                    self.statusLabel.isHidden = false
+                    switch error {
+                    case .somethingWentWrong, .custom, .invalidValue:
+                        self.statusLabel.text = "Something Went Wrong.\n Please try again!"
+                    
+                    case .noInternetConnection:
+                        self.statusLabel.text = "No Internet Connection!"
+                        
+                    case .cityNotFound:
+                        self.statusLabel.text = "No City Found!"
+                    }
+                    
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.forecastUnitHotSeq
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: .celsius)
+            .map {
+                switch $0 {
+                case .celsius: return "°F"
+                case .fahrenheit: return "°C"
+                }
+            }
+            .drive(rightBarButton.rx.title)
             .disposed(by: disposeBag)
     }
 }

@@ -14,67 +14,72 @@ protocol ForecastViewModel {
     
     // Input
     func processQuery(with keyword: String)
+    func toggleUnitSetting()
     
     // Output
-    var forecastsHotSeq: Observable<[ForecastItem]> { get }
+    var forecastsHotSeq: Observable<Result<[ForecastItem], ForecastError>> { get }
+    var forecastUnitHotSeq: Observable<ForecastItem.Unit> { get }
 }
 
 class DefaultForecastViewModel {
     
-    private let getCityForecastUsecase: GetCityForecastUsecase
-    private let forecastRepository: ForecastRepository
-    private let forecastsRelay = BehaviorRelay<[ForecastItem]>(value: [])
+    private let forecastsRelay = BehaviorRelay<Result<[ForecastItem], ForecastError>>(value: .success([]))
+    private let forecastUnitRelay = BehaviorRelay<ForecastItem.Unit>(value: .celsius)
     private let requestStr = PublishRelay<String>()
     private let disposeBag = DisposeBag()
     
-    init(
-        getCityForecastUsecase: GetCityForecastUsecase,
-        forecastRepository: ForecastRepository
-    ) {
-        self.getCityForecastUsecase = getCityForecastUsecase
-        self.forecastRepository = forecastRepository
+    init(getCityForecastUsecase: GetCityForecastUsecase) {
         
         let cityForecastSeq = requestStr
             .filter { $0.isEmpty || $0.count >= 3 }
             .distinctUntilChanged()
             .debounce(.milliseconds(500), scheduler: ConcurrentDispatchQueueScheduler(qos: .utility))
-            .flatMapLatest { requestStr -> Observable<CityForecast?> in
+            .flatMapLatest { requestStr -> Observable<Result<CityForecast?, ForecastError>> in
                 if requestStr.isEmpty {
-                    return .just(nil)
+                    return .just(.success(nil))
                 }
                 let query = CityForecastQuery(name: requestStr.lowercased())
                 return getCityForecastUsecase.execute(with: query)
-                    .map { $0 as CityForecast? }
-                    .catchAndReturn(nil)
+                    .map { .success($0 as CityForecast?) }
+                    .catch({ error in
+                        guard let error = error as? ForecastError else {
+                            return .just(.failure(ForecastError.somethingWentWrong))
+                        }
+                        return .just(.failure(error))
+                    })
                     .asObservable()
             }
         
-        let unitSetting = Observable.just(ForecastItem.Unit.celsius)
-        
-        Observable.combineLatest(cityForecastSeq, unitSetting)
+        Observable.combineLatest(cityForecastSeq, forecastUnitRelay)
             .observe(on: ConcurrentDispatchQueueScheduler(qos: .utility))
-            .map { cityForecast, unit in
-                cityForecast?.forecasts.map {
+            .map { cityForecastResult, unit in
+                switch cityForecastResult {
+                case .success(let cityForecast):
+                    let items: [ForecastItem] = cityForecast?.forecasts.map {
+                        
+                        var average = $0.temperature.day
+                        switch unit {
+                        case .celsius: break
+                        case .fahrenheit: average = average * 9 / 5 + 32
+                        }
+                        
+                        return ForecastItem(
+                            id: "\($0.date.timeIntervalSince1970)",
+                            date: $0.date,
+                            averageTemp: average,
+                            pressure: $0.pressure,
+                            humidity: $0.humidity,
+                            description: $0.weathers.first?.description ?? "N/A",
+                            iconUrlStr: $0.weathers.first?.iconUrlStr ?? "",
+                            unit: unit
+                        )
+                    } ?? []
+                    return .success(items)
                     
-                    var average = $0.temperature.day
-                    switch unit {
-                    case .celsius: break
-                    case .fahrenheit: average = average * 9 / 5 + 32
-                    }
-                    
-                    return ForecastItem(
-                        id: "\($0.date.timeIntervalSince1970)",
-                        date: $0.date,
-                        averageTemp: average,
-                        pressure: $0.pressure,
-                        humidity: $0.humidity,
-                        description: $0.weathers.first?.description ?? "N/A",
-                        iconUrlStr: $0.weathers.first?.iconUrlStr ?? "",
-                        unit: unit
-                    )
-                } ?? []
+                case .failure(let error):
+                    return .failure(error)
+                }
             }
-            .catchAndReturn([])
             .bind(to: forecastsRelay)
             .disposed(by: disposeBag)
     }
@@ -86,7 +91,18 @@ extension DefaultForecastViewModel: ForecastViewModel {
         requestStr.accept(keyword)
     }
     
-    var forecastsHotSeq: Observable<[ForecastItem]> {
+    var forecastsHotSeq: Observable<Result<[ForecastItem], ForecastError>> {
         forecastsRelay.asObservable()
+    }
+    
+    func toggleUnitSetting() {
+        switch forecastUnitRelay.value {
+        case .celsius: forecastUnitRelay.accept(.fahrenheit)
+        case .fahrenheit: forecastUnitRelay.accept(.celsius)
+        }
+    }
+    
+    var forecastUnitHotSeq: Observable<ForecastItem.Unit> {
+        forecastUnitRelay.asObservable()
     }
 }
