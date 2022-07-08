@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NeedleFoundation
 import NABWeatherDomain
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -22,10 +23,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let _ = UIApplication.shared.delegate as? AppDelegate {
             let window = UIWindow(windowScene: windowScene)
-            let cache = Cache<String, CityForecast>.loadCache() ?? Cache()
-            forecastCoordinator = ForecastCoordinator(window: window, cache: cache)
+            registerProviderFactories()
+            let component = ForecastComponent()
+            cache = component.cache
+            forecastCoordinator = ForecastCoordinator(
+                window: window,
+                component: component,
+                forecastDetailBuilder: component.forecastDetailComponent
+            )
             forecastCoordinator?.start()
-            self.cache = cache
             self.window = window
         }
     }

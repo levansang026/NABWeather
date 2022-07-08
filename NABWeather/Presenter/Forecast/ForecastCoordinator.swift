@@ -11,17 +11,23 @@ import NABWeatherDomain
 enum ForecastRoute: Route {
     
     case main
-    case detail
+    case detail(UIColor)
 }
 
 final class ForecastCoordinator: BaseCoordinator<ForecastRoute> {
     
     let window: UIWindow
-    private let cache: Cache<String, CityForecast>
+    private let component: ForecastComponent
+    private let forecastDetailBuilder: ForecastDetailBuilder
     
-    init(window: UIWindow, cache: Cache<String, CityForecast>) {
+    init(
+        window: UIWindow,
+        component: ForecastComponent,
+        forecastDetailBuilder: ForecastDetailBuilder
+    ) {
         self.window = window
-        self.cache = cache
+        self.component = component
+        self.forecastDetailBuilder = forecastDetailBuilder
         let navVC = UINavigationController()
         window.rootViewController = navVC
         super.init(rootViewcontroller: navVC, parent: nil, initialRoute: nil)
@@ -39,44 +45,18 @@ final class ForecastCoordinator: BaseCoordinator<ForecastRoute> {
         
         switch route {
         case .main:
-            let viewController = ForecastViewController()
+            let viewController = component.forecastViewViewController
             navVC.viewControllers = [viewController]
-            
-            let networkConfig = WeatherNetworkConfig()
-            let service = DefaultDataTransferService<DailyForecast>(config: networkConfig)
-            let forecastRepo = FastForecastRepositoryImpl(
-                apiKey: "4a98c3bdd88cacf1fff121f0cce98184",
-                dataTransferService: AnyDataTransferService(service),
-                cache: cache
-            )
-            let viewModel = DefaultForecastViewModel(
-                getCityForecastUsecase: DefaultGetCityForecastUsecase(forecastRepository: forecastRepo)
-            )
-            viewController.viewModel = viewModel
             viewController.coordinator = self
-            
             window.makeKeyAndVisible()
             
-        case .detail:
-            let detailViewController = ForecastDetailViewController(color: .random())
-            navVC.pushViewController(detailViewController, animated: true)
+        case .detail(let color):
+            // For this case I don't think use needle to initialize detail VC is a good idea
+            // Cus it is very simple, use needle is like make a dump
+            // I just wana show the way that I use needle
+            // In reality I will just use the init function of ForecastDetailViewController.
+            let vc = forecastDetailBuilder.buildVC(with: color)
+            navVC.pushViewController(vc, animated: true)
         }
-    }
-}
-
-private extension CGFloat {
-    static func random() -> CGFloat {
-        return CGFloat(arc4random()) / CGFloat(UInt32.max)
-    }
-}
-
-private extension UIColor {
-    static func random() -> UIColor {
-        return UIColor(
-            red:   .random(),
-            green: .random(),
-            blue:  .random(),
-            alpha: 1.0
-        )
     }
 }
