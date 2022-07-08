@@ -11,6 +11,7 @@ import NABWeatherDomain
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var forecastCoordinator: ForecastCoordinator?
     var cache: Cache<String, CityForecast>?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -21,28 +22,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let _ = UIApplication.shared.delegate as? AppDelegate {
             let window = UIWindow(windowScene: windowScene)
+            let cache = Cache<String, CityForecast>.loadCache() ?? Cache()
+            forecastCoordinator = ForecastCoordinator(window: window, cache: cache)
+            forecastCoordinator?.start()
+            self.cache = cache
             self.window = window
         }
-        
-        let viewController = ForecastViewController()
-        let navVC = UINavigationController()
-        navVC.viewControllers = [viewController]
-        
-        cache = .loadCache() ?? Cache()
-        let networkConfig = WeatherNetworkConfig()
-        let service = DefaultDataTransferService<DailyForecast>(config: networkConfig)
-        let forecastRepo = FastForecastRepositoryImpl(
-            apiKey: "4a98c3bdd88cacf1fff121f0cce98184",
-            dataTransferService: AnyDataTransferService(service),
-            cache: cache!
-        )
-        let viewModel = DefaultForecastViewModel(
-            getCityForecastUsecase: DefaultGetCityForecastUsecase(forecastRepository: forecastRepo)
-        )
-        viewController.viewModel = viewModel
-        
-        window?.rootViewController = navVC
-        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

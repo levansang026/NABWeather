@@ -11,6 +11,8 @@ import RxCocoa
 
 class ForecastViewController: UIViewController {
     
+    var coordinator: ForecastCoordinator?
+    
     typealias TableDataSource = UITableViewDiffableDataSource<Int, ForecastItem>
 
     private static let cellIdentifier = "ForecastItemTableViewCell"
@@ -66,19 +68,28 @@ class ForecastViewController: UIViewController {
             .disposed(by: disposeBag)
         navigationItem.rightBarButtonItem = rightBarButton
         
+        // Search Controller
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search City"
         searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.becomeFirstResponder()
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
-        definesPresentationContext = true
+        
+        rx.methodInvoked(#selector(viewDidAppear(_:)))
+            .take(1)
+            .subscribe(onNext: { [weak searchController] _ in
+                searchController?.searchBar.becomeFirstResponder()
+            })
+            .disposed(by: disposeBag)
         
         // Views
         view.backgroundColor = .systemBackground
         tableView.register(ForecastItemTableViewCell.self, forCellReuseIdentifier: Self.cellIdentifier)
         tableView.frame = view.bounds
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        tableView.delegate = self
         view.addSubview(tableView)
         
         statusLabel.textColor = .secondaryLabel
@@ -156,5 +167,13 @@ extension ForecastViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         viewModel.processQuery(with: searchBar.text ?? "")
+    }
+}
+
+extension ForecastViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        coordinator?.navigate(with: ForecastRoute.detail)
+        tableView.cellForRow(at: indexPath)?.setSelected(false, animated: false)
     }
 }

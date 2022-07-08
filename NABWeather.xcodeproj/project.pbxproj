@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D27B32728789DBF00E59BCE /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D27B32628789DBF00E59BCE /* Coordinator.swift */; };
+		9D27B32928789E6D00E59BCE /* ForecastCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D27B32828789E6D00E59BCE /* ForecastCoordinator.swift */; };
+		9D27B32C2878A53E00E59BCE /* ForecastDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D27B32B2878A53E00E59BCE /* ForecastDetailViewController.swift */; };
 		9DAB53B828706BF2009A53B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB53B728706BF2009A53B4 /* AppDelegate.swift */; };
 		9DAB53BA28706BF2009A53B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB53B928706BF2009A53B4 /* SceneDelegate.swift */; };
 		9DAB53BC28706BF2009A53B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB53BB28706BF2009A53B4 /* ViewController.swift */; };
@@ -37,6 +40,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D27B32628789DBF00E59BCE /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		9D27B32828789E6D00E59BCE /* ForecastCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCoordinator.swift; sourceTree = "<group>"; };
+		9D27B32B2878A53E00E59BCE /* ForecastDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDetailViewController.swift; sourceTree = "<group>"; };
 		9DAB53B428706BF2009A53B4 /* NABWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NABWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DAB53B728706BF2009A53B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DAB53B928706BF2009A53B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +86,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D27B32528789D4100E59BCE /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				9D27B32628789DBF00E59BCE /* Coordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		9D27B32A2878A52200E59BCE /* ForecastDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9D27B32B2878A53E00E59BCE /* ForecastDetailViewController.swift */,
+			);
+			path = ForecastDetail;
+			sourceTree = "<group>";
+		};
 		9DAB53AB28706BF2009A53B4 = {
 			isa = PBXGroup;
 			children = (
@@ -101,7 +123,6 @@
 		9DAB53B628706BF2009A53B4 /* NABWeather */ = {
 			isa = PBXGroup;
 			children = (
-				9DFC4B842873413F00734B84 /* Forecast */,
 				9DAB53B728706BF2009A53B4 /* AppDelegate.swift */,
 				9DAB53B928706BF2009A53B4 /* SceneDelegate.swift */,
 				9DAB53BB28706BF2009A53B4 /* ViewController.swift */,
@@ -110,8 +131,9 @@
 				9DAB53C528706BF3009A53B4 /* LaunchScreen.storyboard */,
 				9DAB53C828706BF3009A53B4 /* Info.plist */,
 				9DAB53C028706BF2009A53B4 /* NABWeather.xcdatamodeld */,
-				9DAB53CF28707235009A53B4 /* Data */,
+				9D27B32528789D4100E59BCE /* Coordinator */,
 				9DAB53CE28707227009A53B4 /* Presenter */,
+				9DAB53CF28707235009A53B4 /* Data */,
 			);
 			path = NABWeather;
 			sourceTree = "<group>";
@@ -119,6 +141,8 @@
 		9DAB53CE28707227009A53B4 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				9DFC4B842873413F00734B84 /* Forecast */,
+				9D27B32A2878A52200E59BCE /* ForecastDetail */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -205,6 +229,7 @@
 				9DFC4B8A287342DE00734B84 /* Model */,
 				9DFC4B852873415800734B84 /* ForecastViewController.swift */,
 				9DFC4B882873417F00734B84 /* ForecastViewModel.swift */,
+				9D27B32828789E6D00E59BCE /* ForecastCoordinator.swift */,
 			);
 			path = Forecast;
 			sourceTree = "<group>";
@@ -310,7 +335,10 @@
 				9DAB53E8287194BA009A53B4 /* Endpoint.swift in Sources */,
 				9DFC4B8E2873430700734B84 /* ForecastItemTableViewCell.swift in Sources */,
 				9DFC4B892873417F00734B84 /* ForecastViewModel.swift in Sources */,
+				9D27B32928789E6D00E59BCE /* ForecastCoordinator.swift in Sources */,
+				9D27B32C2878A53E00E59BCE /* ForecastDetailViewController.swift in Sources */,
 				9DAB53E4287192AB009A53B4 /* Requestable.swift in Sources */,
+				9D27B32728789DBF00E59BCE /* Coordinator.swift in Sources */,
 				9DB31D72287213C3009FC20E /* Cache.swift in Sources */,
 				9DAB53F12871DC01009A53B4 /* ForecastResponse.swift in Sources */,
 				9DAB53C228706BF2009A53B4 /* NABWeather.xcdatamodeld in Sources */,
