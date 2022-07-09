@@ -16,6 +16,7 @@ class ForecastItemTableViewCell: UITableViewCell {
         label.textColor = .label
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.accessibilityIdentifier = "dateLabel"
         return label
     }()
     
@@ -24,6 +25,7 @@ class ForecastItemTableViewCell: UITableViewCell {
         label.textColor = .label
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.accessibilityIdentifier = "averageTemp"
         return label
     }()
     
@@ -32,6 +34,7 @@ class ForecastItemTableViewCell: UITableViewCell {
         label.textColor = .label
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.accessibilityIdentifier = "pressureLabel"
         return label
     }()
     
@@ -40,6 +43,7 @@ class ForecastItemTableViewCell: UITableViewCell {
         label.textColor = .label
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.accessibilityIdentifier = "humidityLabel"
         return label
     }()
     
@@ -48,6 +52,7 @@ class ForecastItemTableViewCell: UITableViewCell {
         label.textColor = .label
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.accessibilityIdentifier = "descriptionLabel"
         return label
     }()
     
@@ -56,6 +61,7 @@ class ForecastItemTableViewCell: UITableViewCell {
         img.contentMode = .scaleAspectFill
         img.isHidden = true
         img.translatesAutoresizingMaskIntoConstraints = false
+        img.accessibilityIdentifier = "weatherImageview"
         return img
     }()
     
