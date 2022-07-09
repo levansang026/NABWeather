@@ -87,10 +87,25 @@ class ForecastViewController: UIViewController {
         // Views
         view.backgroundColor = .systemBackground
         tableView.register(ForecastItemTableViewCell.self, forCellReuseIdentifier: Self.cellIdentifier)
-        tableView.frame = view.bounds
-        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableView.delegate = self
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.keyboardDismissMode = .onDrag
         view.addSubview(tableView)
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+        ])
+        
+        if #available(iOS 15.0, *) {
+            tableView.bottomAnchor.constraint(
+                equalTo: view.keyboardLayoutGuide.topAnchor
+            ).isActive = true
+        } else {
+            tableView.bottomAnchor.constraint(
+                equalTo: view.bottomAnchor
+            ).isActive = true
+        }
         
         statusLabel.textColor = .secondaryLabel
         statusLabel.numberOfLines = 3
