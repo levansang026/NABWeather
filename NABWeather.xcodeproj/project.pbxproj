@@ -33,12 +33,25 @@
 		9DAB53F52871E43D009A53B4 /* ForecastRepositoryImpl+Coredata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB53F42871E43D009A53B4 /* ForecastRepositoryImpl+Coredata.swift */; };
 		9DB31D72287213C3009FC20E /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB31D71287213C3009FC20E /* Cache.swift */; };
 		9DB31D7428721DB8009FC20E /* ForeCastEntities+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB31D7328721DB8009FC20E /* ForeCastEntities+Extensions.swift */; };
+		9DCADE1E287954E400FA7D65 /* NABWeatherForecastViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCADE1D287954E400FA7D65 /* NABWeatherForecastViewModelTests.swift */; };
+		9DCADE2C28796A3500FA7D65 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 9DCADE2B28796A3500FA7D65 /* RxBlocking */; };
+		9DCADE2E28796A3500FA7D65 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 9DCADE2D28796A3500FA7D65 /* RxTest */; };
 		9DFC4B862873415800734B84 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC4B852873415800734B84 /* ForecastViewController.swift */; };
 		9DFC4B892873417F00734B84 /* ForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC4B882873417F00734B84 /* ForecastViewModel.swift */; };
 		9DFC4B8E2873430700734B84 /* ForecastItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC4B8D2873430700734B84 /* ForecastItemTableViewCell.swift */; };
 		9DFC4B90287345EE00734B84 /* ForecastItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC4B8F287345EE00734B84 /* ForecastItem.swift */; };
 		9DFC4B9328734EBA00734B84 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 9DFC4B9228734EBA00734B84 /* AlamofireImage */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9DCADE1F287954E400FA7D65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9DAB53AC28706BF2009A53B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9DAB53B328706BF2009A53B4;
+			remoteInfo = NABWeather;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9D27B32628789DBF00E59BCE /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -67,6 +80,8 @@
 		9DAB53F42871E43D009A53B4 /* ForecastRepositoryImpl+Coredata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForecastRepositoryImpl+Coredata.swift"; sourceTree = "<group>"; };
 		9DB31D71287213C3009FC20E /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		9DB31D7328721DB8009FC20E /* ForeCastEntities+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForeCastEntities+Extensions.swift"; sourceTree = "<group>"; };
+		9DCADE1B287954E400FA7D65 /* NABWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NABWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DCADE1D287954E400FA7D65 /* NABWeatherForecastViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NABWeatherForecastViewModelTests.swift; sourceTree = "<group>"; };
 		9DFC4B852873415800734B84 /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
 		9DFC4B882873417F00734B84 /* ForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewModel.swift; sourceTree = "<group>"; };
 		9DFC4B8D2873430700734B84 /* ForecastItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastItemTableViewCell.swift; sourceTree = "<group>"; };
@@ -82,6 +97,15 @@
 				9DAB53DC287190DC009A53B4 /* Moya in Frameworks */,
 				9DAB53E228719228009A53B4 /* NABWeatherDomain in Frameworks */,
 				9DFC4B9328734EBA00734B84 /* AlamofireImage in Frameworks */,
+				9DCADE2E28796A3500FA7D65 /* RxTest in Frameworks */,
+				9DCADE2C28796A3500FA7D65 /* RxBlocking in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DCADE18287954E400FA7D65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +134,7 @@
 			children = (
 				9DAB53D22871623A009A53B4 /* Packages */,
 				9DAB53B628706BF2009A53B4 /* NABWeather */,
+				9DCADE1C287954E400FA7D65 /* NABWeatherTests */,
 				9DAB53B528706BF2009A53B4 /* Products */,
 				9DAB53E028719228009A53B4 /* Frameworks */,
 			);
@@ -119,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				9DAB53B428706BF2009A53B4 /* NABWeather.app */,
+				9DCADE1B287954E400FA7D65 /* NABWeatherTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -223,6 +249,14 @@
 			path = Storages;
 			sourceTree = "<group>";
 		};
+		9DCADE1C287954E400FA7D65 /* NABWeatherTests */ = {
+			isa = PBXGroup;
+			children = (
+				9DCADE1D287954E400FA7D65 /* NABWeatherForecastViewModelTests.swift */,
+			);
+			path = NABWeatherTests;
+			sourceTree = "<group>";
+		};
 		9DFC4B842873413F00734B84 /* Forecast */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,10 +308,30 @@
 				9DAB53E128719228009A53B4 /* NABWeatherDomain */,
 				9DFC4B9228734EBA00734B84 /* AlamofireImage */,
 				9D27B32F2878BC0200E59BCE /* NeedleFoundation */,
+				9DCADE2B28796A3500FA7D65 /* RxBlocking */,
+				9DCADE2D28796A3500FA7D65 /* RxTest */,
 			);
 			productName = NABWeather;
 			productReference = 9DAB53B428706BF2009A53B4 /* NABWeather.app */;
 			productType = "com.apple.product-type.application";
+		};
+		9DCADE1A287954E400FA7D65 /* NABWeatherTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9DCADE23287954E400FA7D65 /* Build configuration list for PBXNativeTarget "NABWeatherTests" */;
+			buildPhases = (
+				9DCADE17287954E400FA7D65 /* Sources */,
+				9DCADE18287954E400FA7D65 /* Frameworks */,
+				9DCADE19287954E400FA7D65 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9DCADE20287954E400FA7D65 /* PBXTargetDependency */,
+			);
+			name = NABWeatherTests;
+			productName = NABWeatherTests;
+			productReference = 9DCADE1B287954E400FA7D65 /* NABWeatherTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -291,6 +345,10 @@
 				TargetAttributes = {
 					9DAB53B328706BF2009A53B4 = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					9DCADE1A287954E400FA7D65 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 9DAB53B328706BF2009A53B4;
 					};
 				};
 			};
@@ -307,12 +365,14 @@
 				9DAB53DA287190DC009A53B4 /* XCRemoteSwiftPackageReference "Moya" */,
 				9DFC4B9128734EBA00734B84 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				9D27B32E2878BC0200E59BCE /* XCRemoteSwiftPackageReference "needle" */,
+				9DCADE2A28796A3500FA7D65 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 9DAB53B528706BF2009A53B4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				9DAB53B328706BF2009A53B4 /* NABWeather */,
+				9DCADE1A287954E400FA7D65 /* NABWeatherTests */,
 			);
 		};
 /* End PBXProject section */
@@ -324,6 +384,13 @@
 			files = (
 				9DAB53C728706BF3009A53B4 /* LaunchScreen.storyboard in Resources */,
 				9DAB53C428706BF3009A53B4 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DCADE19287954E400FA7D65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,7 +449,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9DCADE17287954E400FA7D65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DCADE1E287954E400FA7D65 /* NABWeatherForecastViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9DCADE20287954E400FA7D65 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9DAB53B328706BF2009A53B4 /* NABWeather */;
+			targetProxy = 9DCADE1F287954E400FA7D65 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9DAB53C528706BF3009A53B4 /* LaunchScreen.storyboard */ = {
@@ -433,6 +516,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -494,6 +578,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -568,6 +653,40 @@
 			};
 			name = Release;
 		};
+		9DCADE21287954E400FA7D65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bill.test.NABWeatherTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NABWeather.app/NABWeather";
+			};
+			name = Debug;
+		};
+		9DCADE22287954E400FA7D65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bill.test.NABWeatherTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NABWeather.app/NABWeather";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -589,6 +708,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		9DCADE23287954E400FA7D65 /* Build configuration list for PBXNativeTarget "NABWeatherTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DCADE21287954E400FA7D65 /* Debug */,
+				9DCADE22287954E400FA7D65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -606,6 +734,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 15.0.0;
+			};
+		};
+		9DCADE2A28796A3500FA7D65 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				branch = main;
+				kind = branch;
 			};
 		};
 		9DFC4B9128734EBA00734B84 /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
@@ -632,6 +768,16 @@
 		9DAB53E128719228009A53B4 /* NABWeatherDomain */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NABWeatherDomain;
+		};
+		9DCADE2B28796A3500FA7D65 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9DCADE2A28796A3500FA7D65 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		9DCADE2D28796A3500FA7D65 /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9DCADE2A28796A3500FA7D65 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
 		};
 		9DFC4B9228734EBA00734B84 /* AlamofireImage */ = {
 			isa = XCSwiftPackageProductDependency;
