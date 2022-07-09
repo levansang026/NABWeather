@@ -31,11 +31,11 @@
 		9DAB53F12871DC01009A53B4 /* ForecastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB53F02871DC01009A53B4 /* ForecastResponse.swift */; };
 		9DAB53F32871E3FB009A53B4 /* ForecastRepositoryImpl+MemCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB53F22871E3FB009A53B4 /* ForecastRepositoryImpl+MemCache.swift */; };
 		9DAB53F52871E43D009A53B4 /* ForecastRepositoryImpl+Coredata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB53F42871E43D009A53B4 /* ForecastRepositoryImpl+Coredata.swift */; };
+		9DB08F1F287A1659002F02B1 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 9DB08F1E287A1659002F02B1 /* RxBlocking */; };
+		9DB08F21287A1659002F02B1 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 9DB08F20287A1659002F02B1 /* RxTest */; };
 		9DB31D72287213C3009FC20E /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB31D71287213C3009FC20E /* Cache.swift */; };
 		9DB31D7428721DB8009FC20E /* ForeCastEntities+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB31D7328721DB8009FC20E /* ForeCastEntities+Extensions.swift */; };
 		9DCADE1E287954E400FA7D65 /* NABWeatherForecastViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCADE1D287954E400FA7D65 /* NABWeatherForecastViewModelTests.swift */; };
-		9DCADE2C28796A3500FA7D65 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 9DCADE2B28796A3500FA7D65 /* RxBlocking */; };
-		9DCADE2E28796A3500FA7D65 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 9DCADE2D28796A3500FA7D65 /* RxTest */; };
 		9DFC4B862873415800734B84 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC4B852873415800734B84 /* ForecastViewController.swift */; };
 		9DFC4B892873417F00734B84 /* ForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC4B882873417F00734B84 /* ForecastViewModel.swift */; };
 		9DFC4B8E2873430700734B84 /* ForecastItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC4B8D2873430700734B84 /* ForecastItemTableViewCell.swift */; };
@@ -97,8 +97,6 @@
 				9DAB53DC287190DC009A53B4 /* Moya in Frameworks */,
 				9DAB53E228719228009A53B4 /* NABWeatherDomain in Frameworks */,
 				9DFC4B9328734EBA00734B84 /* AlamofireImage in Frameworks */,
-				9DCADE2E28796A3500FA7D65 /* RxTest in Frameworks */,
-				9DCADE2C28796A3500FA7D65 /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +104,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DB08F21287A1659002F02B1 /* RxTest in Frameworks */,
+				9DB08F1F287A1659002F02B1 /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,8 +308,6 @@
 				9DAB53E128719228009A53B4 /* NABWeatherDomain */,
 				9DFC4B9228734EBA00734B84 /* AlamofireImage */,
 				9D27B32F2878BC0200E59BCE /* NeedleFoundation */,
-				9DCADE2B28796A3500FA7D65 /* RxBlocking */,
-				9DCADE2D28796A3500FA7D65 /* RxTest */,
 			);
 			productName = NABWeather;
 			productReference = 9DAB53B428706BF2009A53B4 /* NABWeather.app */;
@@ -329,6 +327,10 @@
 				9DCADE20287954E400FA7D65 /* PBXTargetDependency */,
 			);
 			name = NABWeatherTests;
+			packageProductDependencies = (
+				9DB08F1E287A1659002F02B1 /* RxBlocking */,
+				9DB08F20287A1659002F02B1 /* RxTest */,
+			);
 			productName = NABWeatherTests;
 			productReference = 9DCADE1B287954E400FA7D65 /* NABWeatherTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -365,7 +367,7 @@
 				9DAB53DA287190DC009A53B4 /* XCRemoteSwiftPackageReference "Moya" */,
 				9DFC4B9128734EBA00734B84 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				9D27B32E2878BC0200E59BCE /* XCRemoteSwiftPackageReference "needle" */,
-				9DCADE2A28796A3500FA7D65 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				9DB08F1D287A1659002F02B1 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 9DAB53B528706BF2009A53B4 /* Products */;
 			projectDirPath = "";
@@ -736,7 +738,7 @@
 				minimumVersion = 15.0.0;
 			};
 		};
-		9DCADE2A28796A3500FA7D65 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		9DB08F1D287A1659002F02B1 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
 			requirement = {
@@ -769,14 +771,14 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = NABWeatherDomain;
 		};
-		9DCADE2B28796A3500FA7D65 /* RxBlocking */ = {
+		9DB08F1E287A1659002F02B1 /* RxBlocking */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9DCADE2A28796A3500FA7D65 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 9DB08F1D287A1659002F02B1 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxBlocking;
 		};
-		9DCADE2D28796A3500FA7D65 /* RxTest */ = {
+		9DB08F20287A1659002F02B1 /* RxTest */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9DCADE2A28796A3500FA7D65 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = 9DB08F1D287A1659002F02B1 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxTest;
 		};
 		9DFC4B9228734EBA00734B84 /* AlamofireImage */ = {
