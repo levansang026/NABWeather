@@ -37,11 +37,15 @@ class NetworkProvider<Target: TargetType> {
     }
     
     private final class func endpointMapping(for target: Target, config: NetworkConfigurable) -> Moya.Endpoint {
+        var task = target.task
+        if let appIdConfig = config as? AppIdConfigurable {
+            task = task.adjust(with: appIdConfig)
+        }
         let endpoint = Moya.Endpoint(
             url: URL(target: target, config: config).absoluteString,
             sampleResponseClosure: { .networkResponse(200, target.sampleData) },
             method: target.method,
-            task: target.task,
+            task: task,
             httpHeaderFields: target.headers
         )
         if let headers = config.headers {
@@ -69,5 +73,18 @@ extension URL {
         } else {
             self = config.baseURL.appendingPathComponent(targetPath)
         }
+    }
+}
+
+extension Task {
+    
+    func adjust(with appIdconfig: AppIdConfigurable) -> Self {
+        guard case let .requestParameters(parameters, encoding) = self else {
+            return self
+        }
+        let merged = parameters.merging([appIdconfig.paramkey: appIdconfig.paramValue]) { _, new in
+            return new
+        }
+        return .requestParameters(parameters: merged, encoding: encoding)
     }
 }

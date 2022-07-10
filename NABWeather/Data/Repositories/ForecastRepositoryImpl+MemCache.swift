@@ -15,16 +15,13 @@ class FastForecastRepositoryImpl {
         return "https://openweathermap.org/img/wn/\(iconId)@2x.png"
     }
     
-    private let dataTransferService: AnyDataTransferService<DailyForecast>
-    private let apiKey: String
+    private let dataTransferService: AnyDataTransferService<WeatherForecast>
     private let cache: Cache<String, CityForecast>
     
     init(
-        apiKey: String,
-        dataTransferService: AnyDataTransferService<DailyForecast>,
+        dataTransferService: AnyDataTransferService<WeatherForecast>,
         cache: Cache<String, CityForecast>
     ) {
-        self.apiKey = apiKey
         self.dataTransferService = dataTransferService
         self.cache = cache
     }
@@ -43,9 +40,8 @@ extension FastForecastRepositoryImpl: ForecastRepository {
     
     func fetchForecast(with query: CityForecastQuery) -> Single<CityForecast> {
         let dataTransferService = self.dataTransferService
-        let apiKey = self.apiKey
         return Single.create { observer in
-            let endpoint = ResponseEndpoint<ForecastResponse, DailyForecast>(target: .forecast(query, appId: apiKey))
+            let endpoint = ResponseEndpoint<ForecastResponse, WeatherForecast>(target: .dailyForecast(query))
             let cancelable = dataTransferService.requestThenDecode(with: endpoint) { result in
                 switch result {
                 case .success(let response):

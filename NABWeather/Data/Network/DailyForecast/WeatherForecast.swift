@@ -9,15 +9,15 @@ import Foundation
 import NABWeatherDomain
 import Moya
 
-enum DailyForecast {
+enum WeatherForecast {
     
-    case forecast(CityForecastQuery, appId: String)
+    case dailyForecast(CityForecastQuery)
 }
 
-extension DailyForecast: TargetType {
+extension WeatherForecast: TargetType {
     
     var path: String {
-        ""
+        "/forecast/daily"
     }
     
     
@@ -31,10 +31,8 @@ extension DailyForecast: TargetType {
     
     var task: Task {
         switch self {
-        case .forecast(let query, let appId):
-            var params = query.asDict()
-            params["appid"] = appId
-            return .requestParameters(parameters: params, encoding: URLEncoding.default)
+        case .dailyForecast(let query):
+            return .requestParameters(parameters: query.asDict(), encoding: URLEncoding.default)
         }
     }
     

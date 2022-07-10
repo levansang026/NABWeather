@@ -17,15 +17,14 @@ class ForecastComponent: BootstrapComponent {
         }
     }
     
-    var dataTransferService: AnyDataTransferService<DailyForecast> {
-        let networkConfig = WeatherNetworkConfig()
-        let service = DefaultDataTransferService<DailyForecast>(config: networkConfig)
+    var dataTransferService: AnyDataTransferService<WeatherForecast> {
+        let networkConfig = WeatherNetworkConfig(appId: "4a98c3bdd88cacf1fff121f0cce98184")
+        let service = DefaultDataTransferService<WeatherForecast>(config: networkConfig)
         return AnyDataTransferService(service)
     }
     
     var forecastRepository: ForecastRepository {
         FastForecastRepositoryImpl(
-            apiKey: "4a98c3bdd88cacf1fff121f0cce98184",
             dataTransferService: dataTransferService,
             cache: cache
         )
