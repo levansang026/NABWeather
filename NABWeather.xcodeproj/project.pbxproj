@@ -176,12 +176,12 @@
 				9DAB53B728706BF2009A53B4 /* AppDelegate.swift */,
 				9DAB53B928706BF2009A53B4 /* SceneDelegate.swift */,
 				9D27B3372878C40B00E59BCE /* NeedleGenerated.swift */,
-				9DAB53C328706BF3009A53B4 /* Assets.xcassets */,
-				9DAB53C528706BF3009A53B4 /* LaunchScreen.storyboard */,
-				9DAB53C828706BF3009A53B4 /* Info.plist */,
 				9D27B32528789D4100E59BCE /* Coordinator */,
 				9DAB53CE28707227009A53B4 /* Presenter */,
 				9DAB53CF28707235009A53B4 /* Data */,
+				9DAB53C328706BF3009A53B4 /* Assets.xcassets */,
+				9DAB53C528706BF3009A53B4 /* LaunchScreen.storyboard */,
+				9DAB53C828706BF3009A53B4 /* Info.plist */,
 			);
 			path = NABWeather;
 			sourceTree = "<group>";
