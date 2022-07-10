@@ -19,12 +19,14 @@ protocol ForecastViewModel {
     // Output
     var forecastsHotSeq: Observable<Result<[ForecastItem], ForecastError>> { get }
     var forecastUnitHotSeq: Observable<ForecastItem.Unit> { get }
+    var shouldShowLoadingView: Observable<Bool> { get }
 }
 
 class DefaultForecastViewModel {
     
     private let forecastsRelay = BehaviorRelay<Result<[ForecastItem], ForecastError>>(value: .success([]))
     private let forecastUnitRelay = BehaviorRelay<ForecastItem.Unit>(value: .celsius)
+    private let shouldShowLoadingViewRelay = BehaviorRelay<Bool>(value: false)
     private let requestStr = PublishRelay<String>()
     private let disposeBag = DisposeBag()
     
@@ -34,6 +36,12 @@ class DefaultForecastViewModel {
             .filter { $0.isEmpty || $0.count >= 3 }
             .distinctUntilChanged()
             .debounce(.milliseconds(500), scheduler: ConcurrentDispatchQueueScheduler(qos: .utility))
+            .do(onNext: { [weak self] requestStr in
+                guard !requestStr.isEmpty else {
+                    return
+                }
+                self?.shouldShowLoadingViewRelay.accept(true)
+            })
             .flatMapLatest { requestStr -> Observable<Result<CityForecast?, ForecastError>> in
                 if requestStr.isEmpty {
                     return .just(.success(nil))
@@ -80,6 +88,9 @@ class DefaultForecastViewModel {
                     return .failure(error)
                 }
             }
+            .do(onNext: { [weak self] _ in
+                self?.shouldShowLoadingViewRelay.accept(false)
+            })
             .bind(to: forecastsRelay)
             .disposed(by: disposeBag)
     }
@@ -104,5 +115,9 @@ extension DefaultForecastViewModel: ForecastViewModel {
     
     var forecastUnitHotSeq: Observable<ForecastItem.Unit> {
         forecastUnitRelay.asObservable()
+    }
+    
+    var shouldShowLoadingView: Observable<Bool> {
+        shouldShowLoadingViewRelay.asObservable()
     }
 }

@@ -23,6 +23,7 @@ class ForecastViewController: UIViewController {
     private lazy var datasource: TableDataSource = {
         let datasource = TableDataSource(tableView: tableView, cellProvider: { (tableView, indexPath, model) -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: Self.cellIdentifier, for: indexPath) as? ForecastItemTableViewCell
+            cell?.backgroundColor = .clear
             cell?.configure(with: model)
             return cell
         })
@@ -35,6 +36,7 @@ class ForecastViewController: UIViewController {
     let tableView = UITableView(frame: .zero, style: .plain)
     let statusLabel = UILabel()
     let rightBarButton = UIBarButtonItem()
+    let activityView = UIActivityIndicatorView(style: .medium)
     
     // MARK: - Methods
     override func viewDidLoad() {
@@ -46,6 +48,7 @@ class ForecastViewController: UIViewController {
     private func setUpViews() {
         
         title = "Weather Forecast"
+        view.backgroundColor = .secondarySystemGroupedBackground
         
         // Navigation bar
         if #available(iOS 15.0, *) {
@@ -85,11 +88,11 @@ class ForecastViewController: UIViewController {
             .disposed(by: disposeBag)
         
         // Views
-        view.backgroundColor = .systemBackground
         tableView.register(ForecastItemTableViewCell.self, forCellReuseIdentifier: Self.cellIdentifier)
         tableView.delegate = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.keyboardDismissMode = .onDrag
+        tableView.backgroundColor = .secondarySystemGroupedBackground
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -111,6 +114,12 @@ class ForecastViewController: UIViewController {
             statusLabel.leadingAnchor.constraint(greaterThanOrEqualTo: view.layoutMarginsGuide.leadingAnchor),
             statusLabel.trailingAnchor.constraint(greaterThanOrEqualTo: view.layoutMarginsGuide.trailingAnchor)
         ])
+        
+        // Acitivity Indicator
+        activityView.isHidden = true
+        activityView.color = .systemBlue
+        let barButton = UIBarButtonItem(customView: activityView)
+        navigationItem.leftBarButtonItem = barButton
     }
     
     private func bindViewModel() {
@@ -164,6 +173,15 @@ class ForecastViewController: UIViewController {
                 }
             }
             .drive(rightBarButton.rx.title)
+            .disposed(by: disposeBag)
+        
+        viewModel.shouldShowLoadingView
+            .distinctUntilChanged()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak activityView] shouldShow in
+                activityView?.isHidden = !shouldShow
+                shouldShow ? activityView?.startAnimating() : activityView?.stopAnimating()
+            })
             .disposed(by: disposeBag)
     }
 }
