@@ -179,7 +179,7 @@ extension ForecastViewController: UISearchResultsUpdating {
 extension ForecastViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.navigate(with: ForecastRoute.detail(.random()))
+        coordinator?.navigate(with: .detail(.random()))
         tableView.cellForRow(at: indexPath)?.setSelected(false, animated: false)
     }
 }

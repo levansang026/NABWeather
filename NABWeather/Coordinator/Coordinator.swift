@@ -16,13 +16,10 @@ protocol Coordinator {
     var rootViewController: UIViewController? { get }
     
     func start()
-    func navigate(with route: Route)
     
     func removeFromParent()
     func add(child: Coordinator)
     func remove(child: Coordinator)
-    
-    func navigationController() -> UINavigationController?
 }
 
 class BaseCoordinator<RouteType: Route>: Coordinator {
@@ -42,33 +39,33 @@ class BaseCoordinator<RouteType: Route>: Coordinator {
         self.initialRoute = initialRoute
     }
     
-    open func start() {
+    func start() {
         fatalError("Please override the \(#function) method.")
     }
     
-    open func navigate(with route: Route) {
+    func navigate(with route: RouteType) {
         fatalError("Please override the \(#function) method.")
     }
     
-    public func add(child: Coordinator) {
+    func add(child: Coordinator) {
         children.append(child)
     }
     
-    public func removeFromParent() {
+    func removeFromParent() {
         parent?.remove(child: self)
     }
     
-    public func remove(child: Coordinator) {
+    func remove(child: Coordinator) {
         children.removeAll(where: {
             $0.rootViewController == child.rootViewController
         })
     }
     
-    public func removeAllChild() {
+    func removeAllChild() {
         children.removeAll()
     }
     
-    public func navigationController() -> UINavigationController? {
+    func navigationController() -> UINavigationController? {
         if let nav = rootViewController as? UINavigationController {
             return nav
         }

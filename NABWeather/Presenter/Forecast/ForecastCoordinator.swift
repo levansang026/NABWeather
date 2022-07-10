@@ -34,12 +34,11 @@ final class ForecastCoordinator: BaseCoordinator<ForecastRoute> {
     }
     
     override func start() {
-        navigate(with: ForecastRoute.main)
+        navigate(with: .main)
     }
     
-    override func navigate(with route: Route) {
-        guard let route = route as? ForecastRoute,
-        let navVC = navigationController() else {
+    override func navigate(with route: ForecastRoute) {
+        guard let navVC = navigationController() else {
             return
         }
         
