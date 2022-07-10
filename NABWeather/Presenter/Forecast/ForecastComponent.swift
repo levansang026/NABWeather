@@ -18,7 +18,7 @@ class ForecastComponent: BootstrapComponent {
     }
     
     var dataTransferService: AnyDataTransferService<WeatherForecast> {
-        let networkConfig = WeatherNetworkConfig(appId: "4a98c3bdd88cacf1fff121f0cce98184")
+        let networkConfig = WeatherNetworkConfig(appId: Config.appId)
         let service = DefaultDataTransferService<WeatherForecast>(config: networkConfig)
         return AnyDataTransferService(service)
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D188201287B243A00534569 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D188200287B243A00534569 /* Config.swift */; };
 		9D27B32728789DBF00E59BCE /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D27B32628789DBF00E59BCE /* Coordinator.swift */; };
 		9D27B32928789E6D00E59BCE /* ForecastCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D27B32828789E6D00E59BCE /* ForecastCoordinator.swift */; };
 		9D27B32C2878A53E00E59BCE /* ForecastDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D27B32B2878A53E00E59BCE /* ForecastDetailViewController.swift */; };
@@ -63,6 +64,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9D1881FE287B22C900534569 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		9D188200287B243A00534569 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		9D27B32628789DBF00E59BCE /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		9D27B32828789E6D00E59BCE /* ForecastCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCoordinator.swift; sourceTree = "<group>"; };
 		9D27B32B2878A53E00E59BCE /* ForecastDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDetailViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +134,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D1881FF287B242500534569 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				9D188200287B243A00534569 /* Config.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		9D27B32528789D4100E59BCE /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,9 +190,11 @@
 				9D27B32528789D4100E59BCE /* Coordinator */,
 				9DAB53CE28707227009A53B4 /* Presenter */,
 				9DAB53CF28707235009A53B4 /* Data */,
+				9D1881FF287B242500534569 /* Config */,
 				9DAB53C328706BF3009A53B4 /* Assets.xcassets */,
 				9DAB53C528706BF3009A53B4 /* LaunchScreen.storyboard */,
 				9DAB53C828706BF3009A53B4 /* Info.plist */,
+				9D1881FE287B22C900534569 /* Config.xcconfig */,
 			);
 			path = NABWeather;
 			sourceTree = "<group>";
@@ -502,6 +515,7 @@
 				9DAB53EA28719535009A53B4 /* DataTransferService+TypeErasure.swift in Sources */,
 				9DFC4B90287345EE00734B84 /* ForecastItem.swift in Sources */,
 				9DFC4B862873415800734B84 /* ForecastViewController.swift in Sources */,
+				9D188201287B243A00534569 /* Config.swift in Sources */,
 				9DAB53E628719301009A53B4 /* NetworkProvider.swift in Sources */,
 				9DAB53F32871E3FB009A53B4 /* ForecastRepositoryImpl+MemCache.swift in Sources */,
 				9DB31D7428721DB8009FC20E /* ForeCastEntities+Extensions.swift in Sources */,
@@ -557,6 +571,7 @@
 /* Begin XCBuildConfiguration section */
 		9DAB53C928706BF3009A53B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D1881FE287B22C900534569 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -619,6 +634,7 @@
 		};
 		9DAB53CA28706BF3009A53B4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D1881FE287B22C900534569 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
