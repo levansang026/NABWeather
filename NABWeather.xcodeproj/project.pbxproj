@@ -138,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				9D188200287B243A00534569 /* Config.swift */,
+				9D1881FE287B22C900534569 /* Config.xcconfig */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -194,7 +195,6 @@
 				9DAB53C328706BF3009A53B4 /* Assets.xcassets */,
 				9DAB53C528706BF3009A53B4 /* LaunchScreen.storyboard */,
 				9DAB53C828706BF3009A53B4 /* Info.plist */,
-				9D1881FE287B22C900534569 /* Config.xcconfig */,
 			);
 			path = NABWeather;
 			sourceTree = "<group>";
